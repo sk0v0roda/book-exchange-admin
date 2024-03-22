@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.button-canvas {
+  display: flex !important;
+  justify-content: center !important;
+}
+.form-toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}

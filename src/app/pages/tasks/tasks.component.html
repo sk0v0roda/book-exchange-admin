@@ -1,0 +1,20 @@
+<h2 class="content-block">Модерация объявлений</h2>
+
+<dx-data-grid
+  [dataSource]="dataSource"
+>
+  <dxo-search-panel
+    [visible]="true"
+    [highlightCaseSensitive]="true"
+  ></dxo-search-panel>
+  <dxi-column dataField="title" caption="Название"></dxi-column>
+  <dxi-column dataField="authors" caption="Автор"></dxi-column>
+  <dxi-column dataField="price" caption="Цена"></dxi-column>
+  <dxi-column cellTemplate="moderateCellTemplate"></dxi-column>
+
+  <div *dxTemplate="let m of 'moderateCellTemplate'" class="button-canvas">
+    <dx-button [text]="'Рассмотреть'" (onClick)="openOfferPopup(m.data)"></dx-button>
+  </div>
+</dx-data-grid>
+
+<app-offer-popup></app-offer-popup>

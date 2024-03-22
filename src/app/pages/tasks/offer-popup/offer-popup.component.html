@@ -1,0 +1,51 @@
+<dx-popup
+  [showTitle]="true"
+  title="Модерация объявления"
+  [(visible)]="isVisible"
+  [width]="580"
+  [height]="'auto'"
+  [hideOnOutsideClick]="true"
+  [showCloseButton]="true"
+>
+  <dx-form
+    [formData]="offer"
+    [readOnly]="true"
+  >
+    <dxi-item
+      dataField="title"
+    ></dxi-item>
+    <dxi-item
+      dataField="description"
+    ></dxi-item>
+    <dxi-item
+      dataField="authors"
+    ></dxi-item>
+    <dxi-item
+      dataField="price"
+    ></dxi-item>
+    <dxi-item
+      dataField="city"
+    ></dxi-item>
+    <dxi-item
+      dataField="picture"
+      class="button-canvas"
+    >
+      <img [src]="offer.picture" alt="Изображение книги" width="120" height="190">
+    </dxi-item>
+    <dxi-item
+    >
+      <dx-select-box
+        [dataSource]="books"
+        [searchEnabled]="true"
+        valueExpr="Id"
+        [displayExpr]="bookDisplayExpr"
+      >
+      </dx-select-box>
+    </dxi-item>
+
+  </dx-form>
+  <div class="form-toolbar">
+    <dx-button type="success" text="Одобрить" (onClick)="approve()"></dx-button>
+    <dx-button type="danger" text="Отклонить" (onClick)="decline()"></dx-button>
+  </div>
+</dx-popup>
