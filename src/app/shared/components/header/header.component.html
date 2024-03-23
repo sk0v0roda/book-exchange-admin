@@ -20,6 +20,12 @@
     <dxi-item
       location="after"
       locateInMenu="auto"
+    >
+      <dx-button type="default" text="Повысить пользователя" (onClick)="open()"></dx-button>
+    </dxi-item>
+    <dxi-item
+      location="after"
+      locateInMenu="auto"
       menuItemTemplate="menuItem">
       <div *dxTemplate="let data of 'item'">
         <dx-button
@@ -38,3 +44,5 @@
     </div>
   </dx-toolbar>
 </header>
+
+<app-promote-popup></app-promote-popup>

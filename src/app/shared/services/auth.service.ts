@@ -9,10 +9,6 @@ export interface IUser {
 }
 
 const defaultPath = '/';
-/*const defaultUser = {
-  email: 'sandra@example.com',
-  avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png'
-};*/
 
 @Injectable()
 export class AuthService {
@@ -20,7 +16,7 @@ export class AuthService {
   private _baseUrl = environment.AuthService;
 
   get loggedIn(): boolean {
-    return !!localStorage.getItem('email');
+    return !!localStorage.getItem('email') && !!localStorage.getItem('accessToken');
   }
 
   private _lastAuthenticatedPath: string = defaultPath;
@@ -46,7 +42,7 @@ export class AuthService {
     } catch (err) {
       return {
         isOk: false,
-        message: "Authentication failed"
+        message: "Не удалось войти, неверный логин или пароль"
       };
     }
   }

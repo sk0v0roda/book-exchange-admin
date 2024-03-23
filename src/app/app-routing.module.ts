@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
-import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import {DxButtonModule, DxDataGridModule, DxFormModule} from 'devextreme-angular';
 import {OfferPopupComponent} from "./pages/tasks/offer-popup/offer-popup.component";
+import {BooksComponent} from "./pages/books/books.component";
+import {GenresComponent} from "./pages/genres/genres.component";
+import {AuthorsComponent} from "./pages/authors/authors.component";
 
 const routes: Routes = [
   {
@@ -15,13 +16,18 @@ const routes: Routes = [
     canActivate: [ AuthGuardService ]
   },
   {
-    path: 'profile',
-    component: ProfileComponent,
+    path: 'books',
+    component: BooksComponent,
     canActivate: [ AuthGuardService ]
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: 'genres',
+    component: GenresComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'authors',
+    component: AuthorsComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -31,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: 'tasks'
   }
 ];
 
@@ -40,8 +46,6 @@ const routes: Routes = [
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [
-    HomeComponent,
-    ProfileComponent,
   ]
 })
 export class AppRoutingModule { }

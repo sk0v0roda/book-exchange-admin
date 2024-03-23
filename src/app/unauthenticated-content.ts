@@ -25,10 +25,7 @@ export class UnauthenticatedContentComponent {
   get title() {
     const path = this.router.url.split('/')[1];
     switch (path) {
-      case 'login-form': return 'Sign In';
-      case 'reset-password': return 'Reset Password';
-      case 'create-account': return 'Sign Up';
-      case 'change-password': return 'Change Password';
+      case 'login-form': return 'Войдите в аккаунт';
       default: return '';
     }
   }
@@ -36,7 +33,6 @@ export class UnauthenticatedContentComponent {
   get description() {
     const path = this.router.url.split('/')[1];
     switch (path) {
-      case 'reset-password': return 'Please enter the email address that you used to register, and we will send you a link to reset your password via Email.';
       default: return '';
     }
   }

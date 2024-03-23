@@ -80,3 +80,17 @@ $side-panel-min-width: 60px;
 .dx-field-item-label-location-top {
   padding: 5px 0 3px;
 }
+.dx-list-layout, .dx-list-toolbar {
+  padding: 16px
+}
+.dx-list-toolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  margin: 16px;
+  background: #FFF;
+  border-radius: 16px;
+  height: auto;
+  box-sizing: border-box;
+  gap: 8px;
+}

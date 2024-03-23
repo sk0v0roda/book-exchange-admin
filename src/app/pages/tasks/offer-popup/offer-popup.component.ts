@@ -16,17 +16,26 @@ import {BookModel} from "../../../shared/models/book.model";
 })
 export class OfferPopupComponent implements OnInit {
   public isVisible = false;
-  public books: BookModel[] = [];
+  public books: any;
   public offer: OfferModel;
   public rejectMessage = "";
+  public approveDto = {
+    offerId: '',
+    linkedBookId: 0
+  }
+  public rejectDto = {
+    offerId: '',
+    rejectReason: ''
+  }
 
   constructor(private booksService: BooksService) {
     this.offer = {};
   }
 
   ngOnInit() {
-    this.books = this.booksService.getBooks();
-    console.log(this.books);
+    this.booksService.getBooks().subscribe((books: any) => {
+      this.books = books.books;
+    });
   }
 
   public open(offer: OfferModel) {
@@ -39,23 +48,25 @@ export class OfferPopupComponent implements OnInit {
   }
 
   public approve() {
-    let result = false;
     confirm("<p>Вы уверены?</p>", "Подтвердите").then(x => {
-      result = x;
+      if (x) {
+        this.approveDto.offerId = this.offer.id || "";
+        console.log(this.approveDto);
+      }
     });
-    if (result) {
-    }
+
   }
 
-  public decline() {
+  public reject() {
     let result = false;
-    this.rejectMessage = prompt('Введите причину отклонения:') || "";
+    this.rejectDto.rejectReason = prompt('Введите причину отклонения:') || "";
+    this.rejectDto.offerId = this.offer.id || "";
     confirm("<p>Вы уверены?</p>", "Подтвердите").then(x => {
-      result = x;
+      if (x) {
+        console.log(this.rejectDto)
+      }
     });
 
-    if (result) {
-    }
   }
 
   // @ts-ignore

@@ -1,0 +1,21 @@
+<dx-popup
+  [showTitle]="true"
+  title="{{edit ? 'Редактирование автора' : 'Создание автора'}}"
+  [(visible)]="isVisible"
+  [width]="580"
+  [height]="'auto'"
+  [hideOnOutsideClick]="true"
+  [showCloseButton]="true"
+>
+  <dx-form
+    [formData]="author"
+  >
+    <dxi-item
+      dataField="name"
+    >
+    </dxi-item>
+  </dx-form>
+  <div class="form-toolbar">
+    <dx-button type="success" text="Сохранить" (onClick)="done()"></dx-button>
+  </div>
+</dx-popup>

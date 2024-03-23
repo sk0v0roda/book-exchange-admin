@@ -1,4 +1,4 @@
-import { Component, NgModule, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {Component, NgModule, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthService, IUser } from '../../services';
@@ -7,6 +7,7 @@ import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 
 import { Router } from '@angular/router';
+import {PromotePopupComponent} from "../promote-popup/promote-popup.component";
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   title!: string;
-
+  @ViewChild(PromotePopupComponent) popup?: PromotePopupComponent;
   user: any | null = { email: '' , avatarUrl: null};
 
   userMenuItems = [
@@ -40,6 +41,9 @@ export class HeaderComponent implements OnInit {
     this.authService.getUser().then((e) => this.user = e.data);
   }
 
+  open() {
+    this.popup?.open();
+  }
   toggleMenu = () => {
     this.menuToggle.emit();
   }
@@ -50,7 +54,8 @@ export class HeaderComponent implements OnInit {
     CommonModule,
     DxButtonModule,
     UserPanelModule,
-    DxToolbarModule
+    DxToolbarModule,
+    PromotePopupComponent
   ],
   declarations: [ HeaderComponent ],
   exports: [ HeaderComponent ]

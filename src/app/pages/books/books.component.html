@@ -1,0 +1,24 @@
+<div class="dx-list-toolbar">
+  <dx-button type="success" text="Добавить" (onClick)="open(false)"></dx-button>
+  <dx-button type="default" text="Редактировать" (onClick)="open(true)" [disabled]="isEditDisabled"></dx-button>
+  <dx-button type="danger" text="Удалить" (onClick)="deleteBook()" [disabled]="isEditDisabled"></dx-button>
+</div>
+
+<h2 class="content-block">Книги</h2>
+
+<div class="dx-list-layout">
+  <dx-list
+    [dataSource]="dataSource"
+    [searchEnabled]="true"
+    [displayExpr]="nameDisplayExpr"
+    keyExpr="id"
+    [selectByClick]="true"
+    (onSelectionChanged)="selectionChanged($event)"
+    [showSelectionControls]="true"
+    selectionMode="single"
+    searchExpr="title"
+  >
+  </dx-list>
+</div>
+
+<app-books-popup (onDone)="bookSaved()"></app-books-popup>

@@ -1,0 +1,43 @@
+<dx-popup
+  [showTitle]="true"
+  title="{{edit ? 'Редактирование книги' : 'Создание книги'}}"
+  [(visible)]="isVisible"
+  [width]="580"
+  [height]="'auto'"
+  [hideOnOutsideClick]="true"
+  [showCloseButton]="true"
+>
+  <dx-form
+    [formData]="book"
+  >
+    <dxi-item
+      dataField="title"
+    >
+    </dxi-item>
+    <dxi-item
+      dataField="genre"
+    >
+      <dx-select-box
+        [dataSource]="genres"
+        displayExpr="name"
+        [(value)]="book.genre"
+        [searchEnabled]="true"
+      ></dx-select-box>
+    </dxi-item>
+    <dxi-item
+      dataField="authors"
+    >
+      <dx-tag-box
+        [dataSource]="authors"
+        displayExpr="name"
+        [(value)]="book.authors"
+        [searchEnabled]="true"
+      >
+      </dx-tag-box>
+    </dxi-item>
+
+  </dx-form>
+  <div class="form-toolbar">
+    <dx-button type="success" text="Сохранить" (onClick)="done()"></dx-button>
+  </div>
+</dx-popup>

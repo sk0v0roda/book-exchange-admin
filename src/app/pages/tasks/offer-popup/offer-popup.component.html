@@ -37,7 +37,8 @@
       <dx-select-box
         [dataSource]="books"
         [searchEnabled]="true"
-        valueExpr="Id"
+        valueExpr="id"
+        [(value)]="approveDto.linkedBookId"
         [displayExpr]="bookDisplayExpr"
       >
       </dx-select-box>
@@ -46,6 +47,6 @@
   </dx-form>
   <div class="form-toolbar">
     <dx-button type="success" text="Одобрить" (onClick)="approve()"></dx-button>
-    <dx-button type="danger" text="Отклонить" (onClick)="decline()"></dx-button>
+    <dx-button type="danger" text="Отклонить" (onClick)="reject()"></dx-button>
   </div>
 </dx-popup>
