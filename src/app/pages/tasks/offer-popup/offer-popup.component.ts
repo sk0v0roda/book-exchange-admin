@@ -4,7 +4,7 @@ import DevExpress from "devextreme";
 import {DxButtonModule, DxFormModule, DxPopupModule, DxSelectBoxModule} from "devextreme-angular";
 import {OfferModel} from "../../../shared/models/offer.model";
 import {confirm} from "devextreme/ui/dialog"
-import {BooksService} from "../../../shared/services";
+import {BooksService, ModerationService} from "../../../shared/services";
 import {BookModel} from "../../../shared/models/book.model";
 
 @Component({
@@ -28,7 +28,8 @@ export class OfferPopupComponent implements OnInit {
     rejectReason: ''
   }
 
-  constructor(private booksService: BooksService) {
+  constructor(private booksService: BooksService,
+              private moderationService: ModerationService) {
     this.offer = {};
   }
 
@@ -51,7 +52,7 @@ export class OfferPopupComponent implements OnInit {
     confirm("<p>Вы уверены?</p>", "Подтвердите").then(x => {
       if (x) {
         this.approveDto.offerId = this.offer.id || "";
-        console.log(this.approveDto);
+        this.moderationService.approveOffer(this.approveDto);
       }
     });
 
@@ -63,7 +64,7 @@ export class OfferPopupComponent implements OnInit {
     this.rejectDto.offerId = this.offer.id || "";
     confirm("<p>Вы уверены?</p>", "Подтвердите").then(x => {
       if (x) {
-        console.log(this.rejectDto)
+        this.moderationService.rejectOffer(this.rejectDto);
       }
     });
 
